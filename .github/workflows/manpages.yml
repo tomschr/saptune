@@ -29,8 +29,7 @@ jobs:
 
             - name: Convert Manpages > HTML
               run: |
-                mkdir manpages 2>/dev/null  || true
-                for manpage in ospackage/man/*.{5,7,9}; do
+                for manpage in ospackage/man/*.?; do
                   m=${manpage%.*}
                   pandoc --from man --to html < ${manpage} > $m.html
                 done
