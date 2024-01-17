@@ -49,7 +49,7 @@ jobs:
                 for manpage in ospackage/man/*.?; do
                   m=${manpage%.*}
                   base=${m##*/}
-                  pandoc --from man --to html < ${manpage} > manpages/${base}.html
+                  pandoc --verbose --from man --to html < ${manpage} > manpages/${base}.html
                 done
 
             - name: List content of output directory
