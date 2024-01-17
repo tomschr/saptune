@@ -15,3 +15,20 @@ jobs:
 
             - name: Check pandoc version
               run:  pandoc --version
+
+            - uses: actions/checkout@v4
+
+            - name: Convert Manpages > HTML
+              run: |
+                mkdir manpages 2>/dev/null  || true
+                for manpage in ospackage/man/*.{5,7,9}; do
+                  m=${manpage%.*}
+                  pandoc --from man --to html < ${manpage} > $m.html
+                done
+
+            - name: Upload artifact
+              uses: actions/upload-artifact@v4
+              with:
+                name: manpages
+                path: manpages/
+                retention-days: 1
