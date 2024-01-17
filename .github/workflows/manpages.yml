@@ -10,9 +10,6 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - name: Print hello
-              run: echo "It works. :)"
-
             - name: Install pandoc
               run: sudo apt install -y pandoc
 
