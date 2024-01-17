@@ -24,6 +24,9 @@ jobs:
                 echo "---"
                 ls ospackage/man
 
+            - name: Create output directory
+              run: mkdir manpages 2>/dev/null  || true
+
             - name: Convert Manpages > HTML
               run: |
                 mkdir manpages 2>/dev/null  || true
