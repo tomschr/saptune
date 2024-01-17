@@ -18,8 +18,12 @@ jobs:
 
             - uses: actions/checkout@v4
 
+            - name: Show checkout
+              run: ls
+
             - name: Convert Manpages > HTML
               run: |
+                cd saptune
                 mkdir manpages 2>/dev/null  || true
                 for manpage in ospackage/man/*.{5,7,9}; do
                   m=${manpage%.*}
