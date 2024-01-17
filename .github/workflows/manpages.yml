@@ -37,7 +37,9 @@ jobs:
               run: sudo apt install -y pandoc
 
             - name: Check pandoc version
-              run:  pandoc --version
+              run:  |
+                pandoc --version
+                python3 --version
 
             - uses: actions/checkout@v4
 
