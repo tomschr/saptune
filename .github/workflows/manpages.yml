@@ -1,8 +1,12 @@
+---
 name: ManpagePublish
 
 on:
     push:
+    # paths:
+    #   - ospackage/man/*
     pull_request:
+
     # Allows you to run this workflow manually from the Actions tab
     workflow_dispatch:
 
@@ -22,6 +26,10 @@ concurrency:
 
 jobs:
     manpage:
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+
         runs-on: ubuntu-latest
 
         steps:
@@ -53,9 +61,26 @@ jobs:
             - name: List content of output directory
               run: ls manpages/
 
+            # - name: Upload artifact
+            #   uses: actions/upload-artifact@v4
+            #   with:
+            #     name: manpages
+            #     path: manpages/
+            #     retention-days: 1
+
+            - name: Setup Pages
+              uses: actions/configure-pages@v4
+
             - name: Upload artifact
-              uses: actions/upload-artifact@v4
+              uses: actions/upload-pages-artifact@v3
               with:
-                name: manpages
-                path: manpages/
-                retention-days: 1
+                  # Upload content of manpages directory
+                  path: manpages/*.html
+
+            - name: Deploy to GH Pages
+              id: deployment
+              uses: actions/deploy-pages@v4
+
+            - name: Output GH Pages URL
+              run:
+                echo "github-pages=${github-pages}" >> "$GITHUB_OUTPUT"
