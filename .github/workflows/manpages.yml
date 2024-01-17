@@ -69,7 +69,7 @@ jobs:
               uses: actions/upload-pages-artifact@v3
               with:
                   # Upload content of manpages directory
-                  path: manpages/*.html
+                  path: ./manpages/
 
             - name: Deploy to GH Pages
               id: deployment
