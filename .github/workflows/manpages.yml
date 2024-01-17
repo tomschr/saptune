@@ -11,4 +11,7 @@ jobs:
 
         steps:
             - name: Print hello
-              run: echo "It works"
+              run: echo "It works"              run: echo "It works"
+
+            - name: Install pandoc
+              run: sudo apt install -y pandoc
