@@ -31,8 +31,11 @@ jobs:
               run: |
                 for manpage in ospackage/man/*.?; do
                   m=${manpage%.*}
-                  pandoc --from man --to html < ${manpage} > $m.html
+                  pandoc --from man --to html < ${manpage} > manpages/$m.html
                 done
+
+            - name: List content of output directory
+              run: ls manpages/
 
             - name: Upload artifact
               uses: actions/upload-artifact@v4
