@@ -22,7 +22,7 @@ jobs:
               run: |
                 ls
                 echo "---"
-                ls ospackage/
+                ls ospackage/man
 
             - name: Convert Manpages > HTML
               run: |
